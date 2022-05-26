@@ -9,7 +9,7 @@ informazioni:
 - Comune di nascita
 - Sesso
 
-Inoltre serve il CODICE del comune di nascita. Il file "Elenco-comuni-italiani.csv" contiene i nomi di tutti i comuni 
+Inoltre serve il codice del comune di nascita. Il file "Elenco-comuni-italiani.csv" contiene i nomi di tutti i comuni 
 italiani e i relativi codici. E' un file in formato csv, perciò la prima riga contiene informazioni sul tipo di dato 
 contenuto in ogni colonna. In particolare noi siamo interessati alle seguenti colonne:
 - colonna 6 : contiene il nome del comune

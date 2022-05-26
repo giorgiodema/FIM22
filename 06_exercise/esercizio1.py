@@ -1,3 +1,5 @@
+import os
+
 
 __consonants = 'BCDFGHJKLMNPQRSTVWXYZ'
 __vowels = 'AEIOU'
@@ -32,6 +34,9 @@ class Paziente:
         self.sesso = sesso
         if Paziente.__codici_comuni == None:
             Paziente.__codici_comuni = Paziente.inizializzaCodiciComuni()
+
+    def __str__(self):
+        return f"Nome:{self.nome:10}, Cognome:{self.cognome:10}, Data Nascita:{self.dn:10}, Comune:{self.cn:15}, Sesso:{self.sesso:7}, CF:{self.cf():16}"
 
     def cf(self):
         codice =  Paziente.codiceCognome(self.cognome) + Paziente.codiceNome(self.nome) + Paziente.codiceDataSesso(self.dn,self.sesso) + Paziente.codiceComune(self.cn)
@@ -283,12 +288,17 @@ class Paziente:
         25:"Z"
     }
 
-
-
-        
-    
-
+def get_key(p:Paziente):
+    return p.nome+p.cognome
 
 if __name__=="__main__":
-    p = Paziente("Giorgio","De Magistris","09/7/1995","Roma","M")
-    print(p.cf())
+    f = open(os.path.join("data","pazienti.csv"),"r")
+    # consume the line with the header
+    f.readline()
+    pazienti = []
+    for line in f:
+        line = line.split(",")
+        pazienti.append(Paziente(line[0],line[1],line[2],line[3],line[4].strip()))
+    pazienti.sort(key=get_key)
+    for p in pazienti:
+        print(p)
