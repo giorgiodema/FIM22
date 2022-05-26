@@ -27,3 +27,4 @@ def tokenize(s:str)->List[str]:
 
 
 l = tokenize("Hello, welcome to the FIM course")
+print(l)
