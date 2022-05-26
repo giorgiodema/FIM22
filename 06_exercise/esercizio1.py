@@ -2,20 +2,7 @@
 __consonants = 'BCDFGHJKLMNPQRSTVWXYZ'
 __vowels = 'AEIOU'
 
-tabella_mesi = {
-    1:"A",
-    2:"B",
-    3:"C",
-    4:"D",
-    5:"E",
-    6:"H",
-    7:"L",
-    8:"M",
-    9:"P",
-    10:"R",
-    11:"S",
-    12:"T"
-}
+
 
 def consonanti(s):
     # estraggo consonanti nell'ordine
@@ -36,8 +23,6 @@ def vocali(s):
 
 
 class Paziente:
-
-    __codici_comuni = None
     
     def __init__(self,nome:str,cognome:str,dn:str,cn:str,sesso:str) -> None:
         self.nome = nome
@@ -50,6 +35,18 @@ class Paziente:
 
     def cf(self):
         codice =  Paziente.codiceCognome(self.cognome) + Paziente.codiceNome(self.nome) + Paziente.codiceDataSesso(self.dn,self.sesso) + Paziente.codiceComune(self.cn)
+        # Il carattere di controllo viene determinato nel modo seguente:
+        # si assegnano ai caratteri in posizione dispari i corrispondenti valori contenuti nel
+        # dizionario Paziente.__tabella_controllo_dispari e si assegnano ai caratteri in posizione pari i 
+        # corrispondenti valori contenuti nel dizionario Paziente.__tabella_controllo_pari
+        controllo_dispari = [Paziente.__tabella_controllo_dispari[x] for x in codice[0::2]]
+        controllo_pari = [Paziente.__tabella_controllo_pari[x] for x in codice[1::2]]
+        # si sommano tutti i valori così ottenuti, si divide il valore calcolato al punto precedente 
+        # per 26 e si considera il resto di tale divisione in base al risultato così ottenuto si 
+        # cerca il carattere di controllo nel dizionario Paziente.__tabella_controllo_somma
+        somma = sum(controllo_dispari) + sum(controllo_pari)
+        codice_controllo = Paziente.__tabella_controllo_somma[somma % 26]
+        codice += codice_controllo
         return codice
 
     def inizializzaCodiciComuni():
@@ -142,7 +139,7 @@ class Paziente:
 
         # Dopo tali due numeri segue una lettera che tiene conto del mese di nascita 
         # secondo la tabella dei mesi
-        codice += tabella_mesi[int(mm)]
+        codice += Paziente.__tabella_mesi[int(mm)]
 
         # Il soggetto è di sesso maschile: Il tal caso si prenderà in considerazione semplicemente il 
         # giorno di nascita. I numeri minori di dieci vanno considerati con uno zero iniziale. 
@@ -161,13 +158,137 @@ class Paziente:
     def codiceComune(comune):
         comune = comune.upper()
         return Paziente.__codici_comuni[comune]
+
+    __codici_comuni = None
+
+    __tabella_mesi = {
+        1:"A",
+        2:"B",
+        3:"C",
+        4:"D",
+        5:"E",
+        6:"H",
+        7:"L",
+        8:"M",
+        9:"P",
+        10:"R",
+        11:"S",
+        12:"T"
+    }
+
+    __tabella_controllo_dispari = {
+        "A":1,
+        "B":0,
+        "C":5,
+        "D":7,
+        "E":9,
+        "F":13,
+        "G":15,
+        "H":17,
+        "I":19,
+        "J":21,
+        "K":2,
+        "L":4,
+        "M":18,
+        "N":20,
+        "O":11,
+        "P":3,
+        "Q":6,
+        "R":8,
+        "S":12,
+        "T":14,
+        "U":16,
+        "V":10,
+        "W":22,
+        "X":25,
+        "Y":24,
+        "Z":23,
+        "0":1,
+        "1":0,
+        "2":5,
+        "3":7,
+        "4":9,
+        "5":13,
+        "6":15,
+        "7":17,
+        "8":19,
+        "9":21
+    }
+
+    __tabella_controllo_pari = {
+        "A":0,
+        "B":1,
+        "C":2,
+        "D":3,
+        "E":4,
+        "F":5,
+        "G":6,
+        "H":7,
+        "I":8,
+        "J":9,
+        "K":10,
+        "L":11,
+        "M":12,
+        "N":13,
+        "O":14,
+        "P":15,
+        "Q":16,
+        "R":17,
+        "S":18,
+        "T":19,
+        "U":20,
+        "V":21,
+        "W":22,
+        "X":23,
+        "Y":24,
+        "Z":25,
+        "0":0,
+        "1":1,
+        "2":2,
+        "3":3,
+        "4":4,
+        "5":5,
+        "6":6,
+        "7":7,
+        "8":8,
+        "9":9
+    }
+
+    __tabella_controllo_somma = {
+        0:"A",
+        1:"B",
+        2:"C",
+        3:"D",
+        4:"E",
+        5:"F",
+        6:"G",
+        7:"H",
+        8:"I",
+        9:"J",
+        10:"K",
+        11:"L",
+        12:"M",
+        13:"N",
+        14:"O",
+        15:"P",
+        16:"Q",
+        17:"R",
+        18:"S",
+        19:"T",
+        20:"U",
+        21:"V",
+        22:"W",
+        23:"X",
+        24:"Y",
+        25:"Z"
+    }
+
+
+
         
     
 
 
 if __name__=="__main__":
-    # Ottavio,Grasso,18/5/2009,Inverso Pinasca,M
-    p = Paziente("Barbara","Ih","18/5/2009","Inverso Pinasca","M")
-    
-    #GRSTTV09E18E311T
+    p = Paziente("Giorgio","De Magistris","09/7/1995","Roma","M")
     print(p.cf())
