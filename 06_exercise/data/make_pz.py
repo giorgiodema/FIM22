@@ -1,4 +1,5 @@
 import random
+random.seed(9)
 
 N = 1000
 

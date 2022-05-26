@@ -24,4 +24,4 @@ successivamente l'intera lista viene ordinata utilizzando come chiave nome e cog
 gli elementi della lista vengono stampati a schermo, stampando per ogni paziente i dati anagrafici e il codice fiscale.
 
 Il secondo programma utilizza la classe Paziente del programma precedente per creare un Iteratore che legge le righe del 
-file "pazienti.csv" una alla volta e ritorna una stringa contenente i dati anagrafici del paziente e il codice fiscale.
+file "pazienti.csv" una alla volta e ritorna i soli pazienti di sesso maschile. Utilizzare l'iteratore per scrivere su file "pazienti_maschi.txt" il codice fiscale dei soli pazienti maschi, uno per riga.
