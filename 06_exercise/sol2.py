@@ -28,7 +28,7 @@ class IteratorePazientiMaschi:
 
 if __name__=="__main__":
     it = IteratorePazientiMaschi(os.path.join("data","pazienti.csv"))
-    f = open("pazienti_maschi.txt","w")
+    f = open(os.path.join("data","pazienti_maschi.txt","w"))
     for p in it:
         f.write(f"{p.cf()}\n")
     f.close()
