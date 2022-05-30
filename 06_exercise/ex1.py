@@ -157,6 +157,7 @@ class Paziente:
         #TODO: implementa la funzione che data in input la stringa con il nome 
         # del comune ritorna il codice del comune (puoi usare il dizionario 
         # Paziente.__codici_comuni)
+        raise NotImplementedError
 
     #
     # attributi della classe Paziente
@@ -296,4 +297,12 @@ if __name__=="__main__":
     # oggetto della classe Paziente per ogni paziente nel file. Gli oggetti pazienti vengono salvati in una lista e 
     # successivamente l'intera lista viene ordinata utilizzando come chiave nome e cognome (in questo ordine) e 
     # gli elementi della lista vengono stampati a schermo, stampando per ogni paziente i dati anagrafici e il codice fiscale.
-    pass
+    pazienti = []
+    # apro file pazienti.csv
+    # per ogni riga
+        # leggo dati
+        # creo oggetto paziente
+        # metto oggetto paziente in lista pazienti
+    
+    # ordino lista per nome e congnome
+    #

@@ -86,7 +86,7 @@ class Paziente:
     #
     def __inizializzaCodiciComuni():
         codici_comuni = {}
-        f = open("data/Elenco-comuni-italiani.csv","r",encoding="utf-8")
+        f = open(os.path.join("06_exercise","data","Elenco-comuni-italiani.csv"),"r",encoding="utf-8")
         f.readline()
         for line in f:
             line = line.split(",")
@@ -330,7 +330,7 @@ def get_key(p:Paziente)->str:
     return p.nome+p.cognome
 
 if __name__=="__main__":
-    f = open(os.path.join("data","pazienti.csv"),"r")
+    f = open(os.path.join("06_exercise","data","pazienti.csv"),"r",encoding="utf-8")
     # consume the line with the header
     f.readline()
     pazienti = []

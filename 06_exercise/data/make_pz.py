@@ -147,7 +147,7 @@ Orlando
 Damico
 """
 
-f = open("data/Elenco-comuni-italiani.csv","r",encoding="utf-8")
+f = open("06_exercise/data/Elenco-comuni-italiani.csv","r",encoding="utf-8")
 comuni = f.readlines()
 f.close()
 comuni = list(map(lambda x:x.split(","),comuni[1:]))
@@ -177,7 +177,7 @@ for i in range(N):
         comune = comuni[random.randint(0,len(comuni)-1)]
     pazienti.add(f"{nome},{cognome},{data},{comune},{sesso}\n")
 
-f = open("data/pazienti.csv","w")
+f = open("06_exercise/data/pazienti.csv","w",encoding="utf-8")
 f.write("nome,cognome,data,comune,sesso\n")
 for p in pazienti:
     f.write(p)
