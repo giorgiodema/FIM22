@@ -27,8 +27,8 @@ class IteratorePazientiMaschi:
         return Paziente(line[0],line[1],line[2],line[3],line[4].strip())
 
 if __name__=="__main__":
-    it = IteratorePazientiMaschi(os.path.join("data","pazienti.csv"))
-    f = open(os.path.join("data","pazienti_maschi.txt","w"))
+    it = IteratorePazientiMaschi(os.path.join("06_exercise","data","pazienti.csv"))
+    f = open(os.path.join("06_exercise","data","pazienti_maschi.txt"),"w",encoding="utf-8")
     for p in it:
         f.write(f"{p.cf()}\n")
     f.close()
